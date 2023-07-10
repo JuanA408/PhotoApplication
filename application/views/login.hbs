@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <script type="text/javascript" src="../public/js/nav.js" defer></script>
+    <script defer src="/public/js/frontEnd.js" ></script>
+
+    <title>Login</title>
+</head>
+<body>
+    <header><h1>Login</h1></header>
+    <nav class="navbar">
+            <ul class="nav-links">
+                <div class="menu">
+                    <li><a href='/'>Home</a></li>
+                {{#if logged}}
+                <li><a id="logout-button">Log Out</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}                    
+                <li><a href="/postimage">Post-Image</a></li>
+                    {{!-- <li><a href="/viewpost">ViewPost</a></li> --}}
+                    <li><a href="/registration">Registration</a></li>
+                    <li>
+                        <div class="search-container">
+                            <form action="#">
+                                <input id="search-text" type="text" placeholder="Search..." name="search">
+                            <button><i id="search-button" class="fa fa-search">Submit</i></button>
+                            </form>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </nav>        
+        
+        <form id="login" method="POST" action="/users/login" enctype="application/x-www-form-urlencoded">
+            
+                <label for="username" class="user-name">Username</label>
+                <input name="username" type="text" required>
+
+                <label for="password" class="password-login">Password</label>
+                <input name="password" type="password" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        {{log this}}
+        {{#if (emptyObject messages)}}
+        {{> flashmessage}}
+        {{/if}}
+
+        {{#if logged}}
+        <script>
+            let ele = document.getElementById('logout-button');
+            if(ele) {
+                ele.onclick = (even) => {
+                    fetch('/users/logout', {
+                        method: "POST"
+                    })
+                    .then((data) => {
+                        location.replace('/');
+                    })
+                }
+            }
+        </script>
+    {{/if}}
+</body>
+</html>

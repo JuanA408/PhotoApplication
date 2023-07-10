@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <script defer src="../public/js/frontEnd.js" ></script>
+
+    <title>PostImage</title>
+</head>
+<body>
+    <header><h1>PostImage</h1></header>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <div class="menu">
+                <li><a href='/'>Home</a></li>
+                {{#if logged}}
+                <li><a id="logout-button">Log Out</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}                
+                <li><a href="/postimage">Post-Image</a></li>
+                {{!-- <li><a href="/viewpost">ViewPost</a></li> --}}
+                <li><a href="/registration">Registration</a></li>
+                <li>
+                    <div class="search-container">
+                        <form action="#">
+                           <input id="search-text" type="text" placeholder="Search..." name="search-text">
+                            <button id="search-button" class="fa fa-search">Submit</button>
+                        </form>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </nav>
+
+    <div id="nav-placeholder"></div>
+        <form id="postImage" method="POST" enctype="multipart/form-data" action="/posts/createPost">
+                <label for="postTitle">Post Title</label>
+                <input name="postTitle" type="text" required>
+                <br>
+                <label for="postDescription">Post Description</label>
+                <input name="postDescription" type="text" required>
+                <br>
+                <label>Image</label>
+                <input type="file" name="uploadImage" required/>
+                <br>
+                <label for="policy"><a href="#">Acceptable Use Policy for uploading images</a></label>
+                <input name="policy" type="checkbox" required>
+                <br>
+            <button type="submit">Submit</button>
+        </form>
+    {{log this}}
+    {{#if (emptyObject messages)}}
+    {{> flashmessage}}
+    {{/if}}
+
+    {{#if logged}}
+        <script>
+            let ele = document.getElementById('logout-button');
+            if(ele) {
+                ele.onclick = (even) => {
+                    fetch('/users/logout', {
+                        method: "POST"
+                    })
+                    .then((data) => {
+                        location.replace('/');
+                    })
+                }
+            }
+        </script>
+    {{/if}}
+  
+</body>
+</html>

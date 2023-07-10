@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <script defer src="../public/js/frontEnd.js" ></script>
+
+    <title>ViewPost</title>
+</head>
+<body>
+    <header><h1>ViewPost</h1></header>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <div class="menu">
+                <li><a href='/'>Home</a></li>
+                {{#if logged}}
+                <li><a id="logout-button">Log Out</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}                
+                <li><a href="/postimage">Post-Image</a></li>
+                {{!-- <li><a href="/viewpost">ViewPost</a></li> --}}
+                <li><a href="/registration">Registration</a></li>
+                <li>
+                    <div class="search-container">
+                        <form action="#">
+                           <input id="search-text" type="text" placeholder="Search..." name="search-text">
+                            <button><i id="search-button" class="fa fa-search">Submit</i></button>
+                        </form>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </nav>
+
+    <div id="nav-placeholder"></div>
+    {{!-- <div class="viewPost" id="body">
+        <div class="title" id="title">Title: </div>
+        <aside>
+            <div class="postAuthor">Post Author: </div>
+            <div class="creationTime">Creation Time: </div>
+        </aside>
+        <div class="flex-container">
+            <img class="item1" style="flex-grow: 1" src="https://fakeimg.pl/350x200/?text=N/A&font=lobster">
+            <img class="item2" style="flex-grow: 1" src="https://fakeimg.pl/350x200/?text=N/A&font=lobster">
+
+        </div>
+    </div> --}}
+
+     <div id="post-container">
+        <img id="image-post-image" src="/{{currentPost.photopath}}">
+        <div id="info-message-grid">
+            <div id="info">
+                <header id="image-post-title">
+                    <h2 id="image-post-title-text">Title: {{currentPost.title}}</h2>
+                </header>
+                <div id="image-post-author" class="info-tags">Author:  {{currentPost.username}}</div>
+                <div id="image-post-data" class="info-tags">Date:     {{currentPost.created}}</div>
+                <div id="image-post-desc" class="info-tags">Description:     {{currentPost.dsecription}}</div>
+            </div>
+
+            {{!-- <div id="messages">
+                <header id="comment-title">
+                    <h2>Comments</h2>
+                </header>
+                <div id="message-list">
+
+                </div>
+                <div id="comment-box">
+                    <textarea id="comment-box-text"></textarea>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+
+    {{log this}}
+    {{#if (emptyObject messages)}}
+    {{> flashmessage}}
+    {{/if}}
+
+    {{#if logged}}
+        <script>
+            let ele = document.getElementById('logout-button');
+            if(ele) {
+                ele.onclick = (even) => {
+                    fetch('/users/logout', {
+                        method: "POST"
+                    })
+                    .then((data) => {
+                        location.replace('/');
+                    })
+                }
+            }
+        </script>
+    {{/if}}
+</body>
+</html>

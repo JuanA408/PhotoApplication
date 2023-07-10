@@ -1,0 +1,261 @@
+header{
+    text-decoration: underline;
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    text-align: center;
+    height: 50px;
+    margin: 0 -9999rem;
+}
+body{
+    background-color: beige;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+input:hover{
+    background-color: blanchedalmond;
+    display: inline-block;
+
+}
+
+  /* form{ */
+    #registration, #login, #postImage{
+      display: grid;
+      padding: 1em;
+      background-color: whitesmoke;
+      border: 1px solid black;
+      border-radius: 8px;
+      margin: 2rem auto 0 auto;
+      max-width: 400px;
+      padding: 1em;
+      box-shadow: 5px 5px 8px #888888;
+      row-gap: 3px;
+  }
+  #registration input, #login input, #postImage input{
+      background-color:white;
+      border: 1px solid black;
+      border-radius: 2px;
+      padding: 0.5em;
+      grid-column: 2/3;
+  }
+
+  #registration button, #login button, #postImage button{
+      width: 100%;
+      background-color: gold;
+      grid-column: 2/3;
+
+  }
+
+  label{
+      padding: 0.5em 0.5em 0.5em 0;
+      grid-column: 1/2;
+      text-align: right;  
+    }
+
+  /* input{
+      padding: 0.5em;
+      grid-column: 2/3;
+  } */
+
+  /* button{
+      grid-column: 2/3;
+  } */
+
+  div.flex-container{
+    display: flex;
+    margin-top: 20px;
+    box-shadow: 5px 5px 8px #888888;
+}
+
+div.flex-container > img{
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    /* margin: auto; */
+}
+
+#errorMessages{
+    border: red solid 1px;
+    background-color: white;
+    grid-column: 1/3;
+    grid-row: auto;
+    visibility: hidden; /*  hides the element info*/
+
+    /* hide element without taking up space on page*/
+    max-height: 0; /* reference: stackoverflow.com... shrinks the size to 0 as to not take up space*/
+}
+
+#usernameError{
+    color: red;
+    visibility: hidden;
+    max-height: 0;
+}
+
+#passwordError{
+    
+        color: red;
+        visibility: hidden;
+        max-height: 0;
+}
+
+#passwordNotMatch{
+    color: red;
+    visibility: hidden;
+    max-height: 0;
+}
+
+#image-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(auto-fill);
+    row-gap: .5em;
+    column-gap: .5em;
+}
+
+.cell{
+    background-color: blanchedalmond;
+    height: 200px;
+    width: 200px;
+    color: red;
+}
+
+.image{
+    width: 100%;
+    height: 80%;
+    transition: opacity 2s;
+}
+
+.pepper{
+    height: 300px;
+    width: 300px;
+    border: black 4px solid;
+}
+
+.counter{
+    margin: 50px auto 0 auto;
+    background-color: white;
+    height: 40px;
+    width: 50px;
+    text-align: center;
+}
+/* using to see how grid item placement works */
+  /* p{d
+      grid-column: 3/auto;
+      grid-row: 1/auto;
+  } */
+
+
+/* Styling the navbar */
+a {
+    text-decoration: none;
+}
+li{ /* might cause an error*/
+    list-style: none; 
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(121, 116, 72);
+    color: #fff;
+}
+
+.nav-links a{
+    color: #fff;
+}
+
+.menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+}
+
+.menu li:hover {
+    display: inline-block;
+    background-color: #888888;
+    transition: 0.3 ease;
+}
+
+.menu li {
+    padding: 5px 14px;
+}
+
+#flash-message{
+    position: fixed;
+    left: 50%;
+    top: 25%;
+
+    transform: translate(-50%,0);
+}
+
+#flash-message div{
+    text-align: center;
+}
+
+#main-content {
+    grid-area: content;
+    padding-top: .35em;
+    padding-bottom: .35em;
+    display: grid;
+    gap: .2rem .2rem;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 186px 150px;
+    grid-template-columns: auto;
+    border: .0665rem solid rgb(255, 255, 255);
+    border-radius: .25rem;
+    box-shadow: 0 2px 2px grey;
+}
+
+.card-image {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+div[class=card] > img {
+    height: 100%;
+    width: 100%;
+}
+
+.card-title {
+    color: white;
+    margin-bottom: .1rem;
+    margin-top: 0;
+    padding-top: .1rem;
+}
+
+.card-body {
+    grid-area: 2 / 1 / 3 / 2;
+    padding: .75rem;
+    background-color: rgb(121, 116, 72);
+    border-radius: 0 0 .2rem .2rem;
+}
+
+div[class=card-body] > a[class=card-button] {
+    text-decoration: none;
+}
+
+.card-text {
+    color: white;
+}
+
+#image-post-image {
+    width: 600px;
+    height: 600px;
+}
+
+.anchor-buttons {
+    border: solid black .5px;
+    border-radius: 10px;
+    background-color: black;
+    padding: 4px;
+    color: white;
+    box-shadow:2px 2px 2px 1px white;
+}
